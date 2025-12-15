@@ -5,13 +5,13 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 
-function Todo({ id, task, completed }) {
+function Todo({ id, task, completed, removeTodo, toggleTodo }) {
     return (
         <ListItem
           key={id}
           secondaryAction={
             <>
-              <IconButton aria-label="Delete" >
+              <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
                 <DeleteIcon />
               </IconButton>
               <IconButton aria-label="Edit">
@@ -21,7 +21,7 @@ function Todo({ id, task, completed }) {
           }
           disablePadding
         >
-        <Checkbox tabIndex={-1} checked={completed} />
+        <Checkbox tabIndex={-1} checked={completed} onClick={() => toggleTodo(id)} />
         <ListItemText style={{textDecoration: completed ? "line-through" : "none"}}>{task}</ListItemText>
         </ListItem>
     )
