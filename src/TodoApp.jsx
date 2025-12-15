@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState, useEffect} from 'react';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import Typography from '@mui/material/Typography';
@@ -9,36 +9,36 @@ import Grid from '@mui/material/Grid';
 import { v4 as uuid } from 'uuid';
 
 function TodoApp() {
-    const initialTodos = [
-        {id: 1, task: 'Learn React', completed: false},
-        {id: 2, task: 'Learn MUI', completed: true},
-        {id: 3, task: 'Build a Todo App', completed: false}
-    ];
+  const initialTodos = JSON.parse(window.localStorage.getItem("todos") || "[]");
 
-    const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState(initialTodos);
 
-    const addTodo = (newTodoText) => {
-        setTodos([...todos, {id: uuid(), task: newTodoText, completed: false}]);
-    };
+  useEffect(() => {
+      window.localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
-    const removeTodo = (todoId) => {
-        const updatedTodos = todos.filter(todo => todo.id !== todoId);
-        setTodos(updatedTodos);
-    };
+  const addTodo = (newTodoText) => {
+      setTodos([...todos, {id: uuid(), task: newTodoText, completed: false}]);
+  };
 
-    const toggleTodo = (todoId) => {
-        const updatedTodos = todos.map(todo => 
-            todo.id === todoId ? {...todo, completed: !todo.completed} : todo
-        );
-        setTodos(updatedTodos);
-    };
+  const removeTodo = (todoId) => {
+      const updatedTodos = todos.filter(todo => todo.id !== todoId);
+      setTodos(updatedTodos);
+  };
 
-    const editTodo = (todoId, newTask) => {
-        const updatedTodos = todos.map(todo => 
-            todo.id === todoId ? {...todo, task: newTask} : todo
-        );
-        setTodos(updatedTodos);
-    };
+  const toggleTodo = (todoId) => {
+      const updatedTodos = todos.map(todo => 
+          todo.id === todoId ? {...todo, completed: !todo.completed} : todo
+      );
+      setTodos(updatedTodos);
+  };
+
+  const editTodo = (todoId, newTask) => {
+      const updatedTodos = todos.map(todo => 
+          todo.id === todoId ? {...todo, task: newTask} : todo
+      );
+      setTodos(updatedTodos);
+  };
 
   return (
     <Paper 

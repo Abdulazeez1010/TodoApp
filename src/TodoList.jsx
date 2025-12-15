@@ -6,6 +6,7 @@ import Divider from '@mui/material/Divider';
 import Todo from './Todo';
 
 function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
+    if (todos.length)
     return (
         <Paper>
             <List>
@@ -26,6 +27,13 @@ function TodoList({ todos, removeTodo, toggleTodo, editTodo }) {
             </List>
         </Paper>
     );
+    return (
+        <Paper style={{marginTop: "1rem", padding: "1rem"}}>
+            <Typography variant='h6' align='center'>
+                You have no todos yet! Add one?
+            </Typography>
+        </Paper>
+    )
 }
 
 export default TodoList;
