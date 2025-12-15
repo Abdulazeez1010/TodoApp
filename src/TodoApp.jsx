@@ -24,7 +24,7 @@ function TodoApp() {
       <AppBar color='primary' position="static" style={{height: "64px"}}>
         <Toolbar>
           <Typography variant="h6" color='inherit'>
-            TODOS WITH HOOKS
+            MY TODO APP
           </Typography>
         </Toolbar>
       </AppBar>
