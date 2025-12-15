@@ -1,0 +1,30 @@
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
+import Checkbox from '@mui/material/Checkbox';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+
+function Todo({ id, task, completed }) {
+    return (
+        <ListItem
+          key={id}
+          secondaryAction={
+            <>
+              <IconButton aria-label="Delete" >
+                <DeleteIcon />
+              </IconButton>
+              <IconButton aria-label="Edit">
+                <EditIcon />
+              </IconButton>
+            </>
+          }
+          disablePadding
+        >
+        <Checkbox tabIndex={-1} checked={completed} />
+        <ListItemText style={{textDecoration: completed ? "line-through" : "none"}}>{task}</ListItemText>
+        </ListItem>
+    )
+}
+
+export default Todo;
