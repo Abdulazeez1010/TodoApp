@@ -8,7 +8,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Grid from '@mui/material/Grid';
 
 function TodoApp() {
-  const initialTodos = [];
+  const initialTodos = [{id: 1, task: "Call Babe", completed: false}];
   const { todos, addTodo, removeTodo, toggleTodo, editTodo } = useTodoState(initialTodos);
 
   return (
