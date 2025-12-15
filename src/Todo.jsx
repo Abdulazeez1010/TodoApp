@@ -23,6 +23,7 @@ function Todo({ id, task, completed, removeTodo, toggleTodo, editTodo }) {
               </IconButton>
             </>
           }
+          style={{height: "64px"}}
           disablePadding
         >
           {isEditing ? (
