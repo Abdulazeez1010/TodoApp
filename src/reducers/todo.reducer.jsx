@@ -20,8 +20,3 @@ const reducer = (state, action) => {
 };
 
 export default reducer;
-
-// {type: "ADD", task: "Walk"}
-// {type: "REMOVE", id: 123}
-// {type: "TOGGLE", id: 123}
-// {type: "EDIT", id: 123, newTask: "Run"}
