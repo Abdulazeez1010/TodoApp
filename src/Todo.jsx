@@ -7,18 +7,18 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { TodosContext } from './contexts/todos.context';
+import { DispatchContext } from './contexts/todos.context';
 
 function Todo({ id, task, completed }) {
     const [isEditing, toggleIsEditing] = useToggleState(false);
-    const { removeTodo, toggleTodo } = useContext(TodosContext)
+    const dispatch = useContext(DispatchContext)
 
     return (
         <ListItem
           key={id}
           secondaryAction={
             <>
-              <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
+              <IconButton aria-label="Delete" onClick={() => dispatch({type: "REMOVE", id: id})}>
                 <DeleteIcon />
               </IconButton>
               <IconButton aria-label="Edit" onClick={toggleIsEditing}>
@@ -40,7 +40,7 @@ function Todo({ id, task, completed }) {
               <Checkbox       
                 tabIndex={-1}
                 checked={completed}
-                onClick={() => toggleTodo(id)}
+                onClick={() => dispatch({type: "TOGGLE", id: id})}
               />
               <ListItemText
                 style={{ textDecoration: completed ? "line-through" : "none" }}
